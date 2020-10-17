@@ -107,6 +107,17 @@ class QuizView extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity
+                    style={[styles.button, {backgroundColor: "blue"}]}
+                    onPress={() => this.setState({showAnswer: !showAnswer})}
+                >
+                    {showAnswer
+                        ?
+                        <Text style={{color: "#FFFFFF"}}>Show question</Text>
+                        :
+                        <Text style={{color: "#FFFFFF"}}>Show answer</Text>
+                    }
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={[styles.button, {backgroundColor: "red"}]}
                     onPress={() => {
                         this.answer(true);

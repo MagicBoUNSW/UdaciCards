@@ -29,14 +29,21 @@ class AddCard extends React.Component{
     submit() {
         const deck = this.props.navigation.getParam("deck", {});
         console.log(deck)
-        addCard(formatTitle(deck.title), {
-            question: this.state.question,
-            answer: this.state.answer
-        }).then(() => {
-            this.props.navigation.state.params.refreshDeck();
-            this.props.navigation.goBack();
-            alert("Card added successfully!");
-        });
+        const {question,answer} = this.state
+        if (question === '' ){
+            alert("Please enter a question for this card.");
+        } else if (answer === ''){
+            alert("Please enter a answer for this card.");
+        } else {
+            addCard(formatTitle(deck.title), {
+                question: this.state.question,
+                answer: this.state.answer
+            }).then(() => {
+                this.props.navigation.state.params.refreshDeck();
+                this.props.navigation.goBack();
+                alert("Card added successfully!");
+            });
+        }
     }
 
     render() {
