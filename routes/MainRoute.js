@@ -9,6 +9,7 @@ import {Icon} from 'react-native-elements'
 import AddCard from "../components/AddCard";
 import QuizView from "../components/QuizView";
 import DeckView from "../components/DeckView";
+import {blue, green, white} from "../data/colors";
 
 const Tabs = createBottomTabNavigator(
     {
@@ -42,8 +43,8 @@ const Tabs = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: "blue",
-            inactiveTintColor: "gray"
+            activeTintColor: blue,
+            inactiveTintColor: green
         }
     },
     {
@@ -57,9 +58,9 @@ export default createStackNavigator(
             screen: Tabs,
             navigationOptions: {
                 headerStyle: {
-                    backgroundColor: "blue"
+                    backgroundColor: blue
                 },
-                headerTintColor: "#fff",
+                headerTintColor: white,
                 headerTitleStyle: {
                     fontWeight: "bold"
                 }

@@ -1,5 +1,6 @@
 import React from "react";
 import {View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView} from "react-native";
+import {blue} from "../data/colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: "center",
         padding: 15,
-        backgroundColor: "blue",
+        backgroundColor: blue,
         margin: 15
     }
 });

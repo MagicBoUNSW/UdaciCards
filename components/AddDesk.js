@@ -2,12 +2,13 @@ import React from "react";
 import {View, Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
 
 import { saveDeck, formatTitle } from "../data/api";
+import {blue, green} from "../data/colors";
 
 const styles = StyleSheet.create({
     button: {
         alignItems: "center",
         padding: 10,
-        backgroundColor: "blue",
+        backgroundColor: blue,
         margin: 10
     },
     container: { flex: 1, padding: 20 },
@@ -44,7 +45,7 @@ class AddDesk extends React.Component{
                     <TextInput
                         style={{
                             height: 40,
-                            borderColor: "gray",
+                            borderColor: green,
                             borderWidth: 1,
                             backgroundColor: "#FFFFFF",
                             padding: 5
