@@ -1,6 +1,9 @@
 import React from "react";
 import { AsyncStorage } from "react-native";
 const DECKS_KEY = "UdaciCards:decks";
+const NOTIFICATION_KEY = "UdaciCards:notifications";
+import { Notifications } from "expo";
+import * as Permissions from 'expo-permissions'
 
 export function formatTitle(title) {
     return title.replace(/\s+/g, "");
@@ -59,5 +62,47 @@ export function removeCard(title, question) {
                 c => c.question !== question
             );
             return AsyncStorage.setItem(DECKS_KEY, JSON.stringify(data));
+        });
+}
+
+export function clearLocalNotification() {
+    return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+        Notifications.cancelAllScheduledNotificationsAsync
+    );
+}
+
+function createNotification() {
+    return {
+        title: "Your quiz!",
+        body: "Remember to do your quiz for today!",
+        ios: {
+            sound: true
+        }
+    };
+}
+
+export function setLocalNotification() {
+    AsyncStorage.getItem(NOTIFICATION_KEY)
+        .then(JSON.parse)
+        .then(data => {
+            if (data === null) {
+                Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+                    if (status === "granted") {
+                        Notifications.cancelAllScheduledNotificationsAsync();
+
+                        let tomorrow = new Date();
+                        tomorrow.setDate(tomorrow.getDate() + 1);
+                        tomorrow.setHours(0);
+                        tomorrow.setMinutes(1);
+
+                        Notifications.scheduleLocalNotificationAsync(createNotification(), {
+                            time: tomorrow,
+                            repeat: "day"
+                        });
+
+                        AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+                    }
+                });
+            }
         });
 }

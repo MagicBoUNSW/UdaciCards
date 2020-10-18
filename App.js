@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MainRoute from './routes/MainRoute'
 import {getDecks} from "./data/api";
+import {setLocalNotification} from "./data/api";
 
 
 export default class App extends React.Component {
@@ -15,6 +16,7 @@ export default class App extends React.Component {
     };
 
     componentDidMount() {
+        setLocalNotification();
         this.refresh();
     }
 

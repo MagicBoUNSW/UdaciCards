@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-
+import {clearLocalNotification, setLocalNotification} from "../data/api";
 
 const styles = StyleSheet.create({
     containerComplete: {
@@ -64,6 +64,11 @@ class QuizView extends React.Component {
                 answeredCards: answered,
             };
         });
+
+        if (!currentCard) {
+            clearLocalNotification().then(setLocalNotification);
+        }
+
     };
 
 
