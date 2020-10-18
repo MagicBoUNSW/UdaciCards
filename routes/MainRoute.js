@@ -1,8 +1,9 @@
 import React from "react";
 import {
-    createBottomTabNavigator,
-    createStackNavigator
-} from "react-navigation";
+    createBottomTabNavigator
+} from "react-navigation-tabs";
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation'
 import DeckList from "../components/DeckList";
 import AddDesk from "../components/AddDesk";
 import {Icon} from 'react-native-elements'
@@ -52,7 +53,7 @@ const Tabs = createBottomTabNavigator(
     }
 );
 
-export default createStackNavigator(
+export default createAppContainer(createStackNavigator(
     {
         DeckList: {
             screen: Tabs,
@@ -79,5 +80,5 @@ export default createStackNavigator(
     {
         initialRouteName: "DeckList"
     }
-);
+));
 
