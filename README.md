@@ -20,3 +20,8 @@ If you get this error: TaskQueue: Error with task: undefined is not an object (e
 + to:
 
 + this.view.getNode().measureInWindow((winX, winY, winWidth, winHeight) => {
+
+
+### Platforms
+
++ I used iOS devices to test the app.
