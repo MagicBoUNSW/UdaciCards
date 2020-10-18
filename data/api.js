@@ -2,7 +2,7 @@ import React from "react";
 import { AsyncStorage } from "react-native";
 const DECKS_KEY = "UdaciCards:decks";
 const NOTIFICATION_KEY = "UdaciCards:notifications";
-import { Notifications } from "expo";
+import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions'
 
 export function formatTitle(title) {
@@ -88,14 +88,14 @@ export function setLocalNotification() {
             if (data === null) {
                 Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
                     if (status === "granted") {
-                        Notifications.cancelAllScheduledNotificationsAsync();
+                        Notifications.cancelAllScheduledNotificationsAsync()
 
                         let tomorrow = new Date();
                         tomorrow.setDate(tomorrow.getDate() + 1);
                         tomorrow.setHours(0);
                         tomorrow.setMinutes(1);
 
-                        Notifications.scheduleLocalNotificationAsync(createNotification(), {
+                        Notifications.scheduleNotificationAsync(createNotification(), {
                             time: tomorrow,
                             repeat: "day"
                         });
